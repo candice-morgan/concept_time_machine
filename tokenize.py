@@ -29,6 +29,7 @@ for infile in files:
         doc = json.loads(doc)
         doc_id = doc['id']
         text = doc['text']
+        source = doc['source']
         # convert to tokens using BERT
         raw_pieces = [tokenizer.ids_to_tokens[i] for i in tokenizer.encode(text, add_special_tokens=False)]
         # rejoin into concatenated words
@@ -43,7 +44,7 @@ for infile in files:
                     rejoined_pieces.append(piece)
             text = [x.replace('##', "") for x in raw_pieces]
             text = ' '.join(text)
-            outlines.append({'doc_id': doc_id, 'text': text, 'tokens': rejoined_pieces})
+            outlines.append({'doc_id': doc_id, 'source': source, 'text': text, 'tokens': rejoined_pieces})
 
     outfile = os.path.join(outdir, basename)
     with open(outfile, 'w') as fo:
