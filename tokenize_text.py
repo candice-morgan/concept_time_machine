@@ -19,7 +19,7 @@ files = sorted(glob(os.path.join(indir, '*.jsonlist')))
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 for infile in files:
-    basename = os.path.basename(infile).sub('.jsonlist',"")+'_tokenized.jsonlist'
+    basename = os.path.basename(infile).replace('.jsonlist',"")+'_tokenized.jsonlist'
     doc_id = 0
     with open(infile) as f:
         docs = f.readlines()
