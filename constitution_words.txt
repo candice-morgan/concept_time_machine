@@ -1,3 +1,4 @@
+recess
 bear arms
 necessary and proper
 cruel and unusual
@@ -5,12 +6,46 @@ due process
 confronted
 confrontation
 natural born
-public use
 herein granted
 executive
+executive power
 witness
 exportation
+good behavior
 treason
+declare war
+war
+receive ambassadors
+privileges
+immunities
+impeachment
+indictment
+ex post facto
+felony
+treaty
+reprieves
+pardons
+bribery
+jury
+forfeiture
+piracies
+bills of credit
+imposts
+exiles
+law of nations
+captures
+raise and support
+cession
+capitation
+alliance
+confederation
+compact
+ambassadors
+public ministers
+consuls
+commission
+controversies
+public use
 amendment
 insure
 attained
@@ -68,7 +103,6 @@ throughout
 seats
 claims
 election
-cession
 convention
 maritime
 clymer
@@ -121,13 +155,11 @@ publish
 submission
 enumeration
 vested
-bribery
 clauses
 facto
 appoint
 question
 approve
-immunities
 fifth
 color
 pro
@@ -142,7 +174,6 @@ determines
 arrest
 carroll
 authorized
-war
 four
 behavior
 contracted
@@ -175,7 +206,6 @@ common
 adding
 ability
 gouvernour
-felony
 make
 test
 migration
@@ -217,11 +247,9 @@ benjamin
 peace
 returns
 greatest
-commissions
 emancipation
 vacancy
 maryland
-captures
 arsenals
 bassett
 foreign
@@ -272,7 +300,6 @@ bail
 promote
 eighty
 either
-consuls
 one
 assembled
 sections
@@ -407,7 +434,6 @@ votes
 punishment
 ex
 september
-impeachment
 exceed
 civil
 work
@@ -444,7 +470,6 @@ duty
 re
 favor
 servitude
-reprieves
 samuel
 indian
 warrants
@@ -526,7 +551,6 @@ original
 apply
 jacob
 proceed
-ambassadors
 may
 executed
 execution
@@ -541,7 +565,6 @@ exclusive
 attainder
 impeachments
 transmit
-pardons
 supported
 abridging
 affirmation
@@ -657,7 +680,6 @@ born
 religion
 reserved
 parts
-capitation
 heads
 taxes
 perform
@@ -689,7 +711,6 @@ tempore
 tried
 choice
 obligations
-alliance
 smaller
 papers
 ten
@@ -729,7 +750,6 @@ affirm
 execute
 counsel
 choosing
-privileges
 qualification
 inferior
 declaring
@@ -746,7 +766,6 @@ property
 prevent
 convene
 happen
-controversies
 concerning
 fines
 sale
@@ -776,7 +795,6 @@ informed
 death
 delivered
 chosen
-confederation
 escaping
 together
 end
@@ -812,7 +830,6 @@ rights
 gorham
 solemnly
 mentioned
-treaty
 certificates
 witnesses
 militia
@@ -866,7 +883,6 @@ people
 life
 vote
 grand
-indictment
 ratified
 derived
 thirds
@@ -899,7 +915,6 @@ voted
 article
 attainted
 respectively
-forfeiture
 sixth
 armies
 south
@@ -945,7 +960,6 @@ gilman
 directed
 buildings
 certify
-imposts
 establishment
 excepted
 measures
@@ -967,7 +981,6 @@ assume
 foregoing
 inflicted
 longer
-commission
 respecting
 period
 security
@@ -982,8 +995,6 @@ representation
 silver
 expire
 failure
-recess
-piracies
 years
 paid
 going
@@ -1003,7 +1014,6 @@ ratifying
 cases
 private
 violation
-compact
 accusation
 become
 tribes
@@ -1034,7 +1044,6 @@ debts
 removed
 clear
 recommend
-jury
 return
 section
 probable
