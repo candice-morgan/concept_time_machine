@@ -12,10 +12,13 @@ from transformers import BertModel,BertTokenizer
 
 in_dir = os.path.join('data','preprocessed')
 sample_file = os.path.join('data','preprocessed','sample_target_index.dict')
-outdir = os.path.join('data','preprocessed')
-out_file = os.path.join('data','preprocessed','cofea_sampled_vectors')
-batch_size = 200
-layers = '10,11'
+outdir = os.path.join('data','embeddings')
+out_file = os.path.join(outdir,'cofea_sampled_vectors')
+batch_size = 300
+layers = '11,12'
+word_batch_num = 5 # we are only extracting one set of word embeddings of word batch size
+word_batch_size = 197
+
 
 # collect index of tokens in the documents
 files = sorted(glob(os.path.join(in_dir, '*_tokenized.jsonlist')))
@@ -37,7 +40,10 @@ tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 # move the model to the GPU
 device = 'cuda'
 if torch.cuda.is_available():
+    print("using gpu")
     model.to(device)
+else:
+    print("not using gpu")
 
 def get_context(token_ids, target_position, sequence_length=128):
     """
@@ -66,11 +72,13 @@ def get_context(token_ids, target_position, sequence_length=128):
 # Just put the output into some lists for now
 token_index_list = []
 to_encode = []
-vectors_by_layer = defaultdict(dict)
-for layer in layers:
-    vectors_by_layer[layer] = defaultdict(list)
-    
-for target_word in tqdm(sample_index):
+vectors_by_layer = defaultdict(list)
+target_words = list(sample_index.keys())
+start = word_batch_size*(word_batch_num-1)
+end = min(len(target_words),word_batch_size*word_batch_num)
+print("extracting embeddings for the following words:")
+print(target_words[start:end])
+for target_word in tqdm(target_words[start:end]):
     for line_index,example_info in enumerate(sample_index[target_word]):
         file_id,doc_id,index = example_info
         doc = json.loads(docs[file_id][doc_id])
@@ -96,7 +104,7 @@ for target_word in tqdm(sample_index):
                     for row in np.arange(len(token_index_list)):
                         pos = token_index_list[row]
                         for layer in layers:
-                            vectors_by_layer[layer][target_word].append(
+                            vectors_by_layer[layer].append(
                                 np.array(vectors_np[layer][row, pos, :].copy(), dtype=np.float32))                        
                         
                 except Exception as e:
@@ -107,6 +115,7 @@ for target_word in tqdm(sample_index):
             to_encode = []
             token_index_list = []
 
-for layer in layers:
-    with open(out_file+'_layer_'+str(layer)+'.dict','wb') as f:
-        pickle.dump(vectors_by_layer[layer],file=f)
+    with open(out_file+'_'+target_word+'.dict','wb') as f:
+        pickle.dump(vectors_by_layer,file=f)
+        
+    vectors_by_layer = defaultdict(list)
