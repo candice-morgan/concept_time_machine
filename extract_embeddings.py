@@ -16,8 +16,8 @@ outdir = os.path.join('data','embeddings')
 out_file = os.path.join(outdir,'cofea_sampled_vectors')
 batch_size = 300
 layers = '11,12'
-word_batch_num = 5 # we are only extracting one set of word embeddings of word batch size
-word_batch_size = 197
+word_batch_num = 2 # we are only extracting one set of word embeddings of word batch size
+word_batch_size = 170
 
 
 # collect index of tokens in the documents
