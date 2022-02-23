@@ -9,16 +9,27 @@ import pickle
 import numpy as np
 from tqdm import tqdm
 from transformers import BertModel,BertTokenizer
+import argparse
 
-in_dir = os.path.join('data','preprocessed')
-sample_file = os.path.join('data','preprocessed','sample_target_index.dict')
-outdir = os.path.join('data','embeddings')
-out_file = os.path.join(outdir,'cofea_sampled_vectors')
-batch_size = 300
+argp = argparse.ArgumentParser()
+argp.add_argument("--model_name",default='bert-base-uncased')
+argp.add_argument("--input_dir", default=os.path.join('data', 'preprocessed'))
+argp.add_argument("--output_dir", default=os.path.join('data','embeddings'))
+argp.add_argument('--out_name',default='cofea_sampled_vectors')
+argp.add_argument('--batch_number',type=int)
+argp.add_argument('--word_batch_size',type=int,default=170,help='total number of vocabulary words being processed')
+argp.add_argument('--batch_size',default=300)
+args = argp.parse_args()
+
+in_dir = args.input_dir
+sample_file = os.path.join(in_dir,'sample_target_index.dict')
+outdir = args.output_dir
+out_file = os.path.join(outdir,args.out_name)
+batch_size = args.batch_size
 layers = '11,12'
-word_batch_num = 2 # we are only extracting one set of word embeddings of word batch size
-word_batch_size = 170
-
+word_batch_num = args.batch_number # we are only extracting one set of word embeddings of word batch size
+word_batch_size = args.word_batch_size
+model_name = args.model_name
 
 # collect index of tokens in the documents
 files = sorted(glob(os.path.join(in_dir, '*_tokenized.jsonlist')))
@@ -35,7 +46,7 @@ with open(sample_file,'rb') as f:
 layers = [int(layer) for layer in layers.split(',')]
 
 # load the model
-model = BertModel.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained(model_name)
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 # move the model to the GPU
 device = 'cuda'
