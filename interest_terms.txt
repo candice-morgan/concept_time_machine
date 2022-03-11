@@ -6,6 +6,7 @@ due process
 confronted
 confrontation
 natural born
+natural born cititzen
 herein granted
 executive
 executive power
@@ -47,18 +48,11 @@ commission
 controversies
 public use
 habeas corpus
-united states
-rhode island
-south carolina
 pro tempore
-new york
-north carolina
 repel invasions
 appellate jurisdiction
 imminent danger
 suppress insurrections
-new jersey
-new hampshire
 indian tribes
 compulsory process
 grand jury
@@ -77,4 +71,5 @@ declare war
 receive ambassadors
 executive power
 public ministers
+commerce
 in law
