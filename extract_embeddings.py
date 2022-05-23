@@ -15,14 +15,16 @@ argp = argparse.ArgumentParser()
 argp.add_argument("--model_name",default='bert-base-uncased')
 argp.add_argument("--input_dir", default=os.path.join('data', 'preprocessed'))
 argp.add_argument("--output_dir", default=os.path.join('data','embeddings'))
+argp.add_argument('--input_file',default='sampled_target_index.dict')
 argp.add_argument('--out_name',default='cofea_sampled_vectors')
 argp.add_argument('--batch_number',type=int)
 argp.add_argument('--word_batch_size',type=int,default=170,help='total number of vocabulary words being processed')
 argp.add_argument('--batch_size',default=300)
+argp.add_argument('--mask',default=False)
 args = argp.parse_args()
 
 in_dir = args.input_dir
-sample_file = os.path.join(in_dir,'sample_target_index.dict')
+sample_file = os.path.join(in_dir,args.input_file)
 outdir = args.output_dir
 out_file = os.path.join(outdir,args.out_name)
 batch_size = args.batch_size
@@ -30,6 +32,7 @@ layers = '11,12'
 word_batch_num = args.batch_number # we are only extracting one set of word embeddings of word batch size
 word_batch_size = args.word_batch_size
 model_name = args.model_name
+mask = args.mask
 
 # collect index of tokens in the documents
 files = sorted(glob(os.path.join(in_dir, '*_tokenized.jsonlist')))
@@ -94,6 +97,9 @@ for target_word in tqdm(target_words[start:end]):
         file_id,doc_id,index = example_info
         doc = json.loads(docs[file_id][doc_id])
         tokens = doc['tokens']
+        if mask:
+            # change the target token to mask
+            tokens[index] = '[MASK]'
         # now we get the context
         context_ids, pos_in_context = get_context(tokens, index)
         input_ids = tokenizer.convert_tokens_to_ids(
@@ -125,8 +131,8 @@ for target_word in tqdm(target_words[start:end]):
             
             to_encode = []
             token_index_list = []
-
-    with open(out_file+'_'+target_word+'.dict','wb') as f:
+    embed_file = out_file+'_masked_'+target_word+'.dict' if mask else out_file+'_'+target_word+'.dict'
+    with open(embed_file,'wb') as f:
         pickle.dump(vectors_by_layer,file=f)
         
     vectors_by_layer = defaultdict(list)
